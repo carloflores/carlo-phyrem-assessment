@@ -1,0 +1,40 @@
+version: '3'
+
+services:
+  db:
+    image: mysql:8.0
+    container_name: db
+    command: mysqld --default-authentication-plugin=mysql_native_password
+    restart: always
+    environment:
+      - MYSQL_DATABASE=phyrem_assessment
+      - MYSQL_USER=phyrem
+      - MYSQL_PASSWORD=1234
+      - MYSQL_ROOT_PASSWORD=1234
+    volumes:
+      - ./bak:/bak
+    ports:
+      - 3307:3306
+      
+  web:
+    image: "webdevops/php-apache-dev:7.4"
+    container_name: web
+    environment:
+      - WEB_DOCUMENT_ROOT=/var/www/html
+      - PHP_DISPLAY_ERRORS=1
+      - PHP_MEMORY_LIMIT=1024M
+      - PHP_MAX_EXECUTION_TIME=3600
+      - PHP_POST_MAX_SIZE=100M
+      - PHP_UPLOAD_MAX_FILESIZE=100M
+      - PHP_MAX_INPUT_VARS=2000
+      - PHP_DATE_TIMEZONE=UTC
+      - PHP_OPCACHE_ENABLE_CLI=1
+    volumes:
+      - .:/var/www/html/
+      - ./config:/usr/local/etc/php/
+      - ./logs:/var/log/apache2/
+    ports:
+      - 8081:80
+      - 443:443
+    links:
+      - db

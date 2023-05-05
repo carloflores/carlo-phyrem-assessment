@@ -1,0 +1,1 @@
+cat ./bak/phyrem_assessment.sql | docker exec -i db mysql -u root --password=1234 phyrem_assessment

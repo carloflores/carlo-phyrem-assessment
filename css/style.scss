@@ -1,0 +1,245 @@
+@import url('https://fonts.googleapis.com/css2?family=Alata&family=Poppins:wght@300;400;500;600&display=swap');
+
+@mixin xxs () {
+    @media (max-width: 399px) {
+        @content;
+    }
+}
+
+@mixin xs () {
+    @media (max-width: 575.98px) {
+        @content;
+    }
+}
+
+@mixin sm () {
+    @media (max-width: 767.98px) {
+        @content;
+    }
+}
+
+@mixin md () {
+    @media (max-width: 991.98px) {
+        @content;
+    }
+}
+
+@mixin lg () {
+    @media (max-width: 1199.98px) {
+        @content;
+    }
+}
+
+@mixin xl () {
+    @media (max-width: 1399.98px) {
+        @content;
+    }
+}
+
+* {
+    font-family: 'Poppins', sans-serif;
+}
+
+h1, h2, h3, h4, h5 {
+    font-family: 'Alata', sans-serif;
+}
+
+header {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 300px;
+    height: 100vh;
+    background: #fbfcff;
+    z-index: 32;
+
+    @include sm() {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: fit-content;
+        padding: 10px 0;
+        background: #f5f5f5;
+    }
+
+    .header-content {
+        margin-left: 0;
+        background: #fbfcff;
+        padding: 50px 30px;
+
+        @include sm() {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            margin-left: -120vh;
+            
+
+            &.active {
+                margin-left: 0;
+            }
+        }
+    }
+
+    .list-group-item {
+
+        &.active {
+            background-color: #2f7ff5;
+
+            a {
+                color: #fff;
+            }
+        }
+
+        a {
+            text-decoration: none;
+            text-transform: none;
+            color: #2f7ff5;
+    
+            &:hover {
+                color: currentColor;
+                opacity: 0.7;
+            }
+        }
+    }
+}
+
+main {
+    margin-left: 300px;
+    padding: 50px 0;
+
+    @include sm() {
+        margin-left: 0px;
+        width: 100%;
+        position: relative;
+        margin-top: 30px;
+    }
+}
+
+//datatable 
+
+/* Style for the table */
+table.dataTable {
+    border-collapse: collapse;
+    width: 100%;
+
+
+    th,
+    td {
+        padding: 8px;
+        text-align: left;
+        vertical-align: middle;
+    }
+
+    thead th {
+        background-color: #2f7ff5;
+        color: #fff;
+
+        &:first-child {
+            border-top-left-radius: 10px;
+        }
+
+        &:last-child {
+            border-top-right-radius: 10px;
+        }
+    }
+
+    tbody tr {
+        &:last-child {
+
+                border-bottom-color: transparent !important;
+
+            td {
+                border-bottom-color: transparent !important;
+            }
+
+            td:first-child {
+                border-bottom-left-radius: 10px;
+            }
+            td:last-child {
+                border-bottom-right-radius: 10px;
+            }
+        }
+
+    }
+
+    tbody tr:nth-child(odd) {
+        background-color: #fff !important;
+    }
+
+    tbody tr:nth-child(even) {
+        background-color: #e1e1e1 !important;
+    }
+
+    tbody tr:hover {
+        background-color: #e3e3e3 !important;
+    }
+
+   
+
+}
+
+ /* Pagination style */
+ .dataTables_paginate {
+     margin-top: 16px;
+
+    
+ }
+
+  .paginate_button {
+         display: inline-block;
+         padding: 6px 12px;
+         margin-right: 8px;
+         font-size: 14px;
+         line-height: 1.42857143;
+         color: #333;
+         background-color: #fff;
+         border: 1px solid #ccc;
+         border-radius: 4px;
+         cursor: pointer;
+
+         &:hover {
+             color: #333;
+             background-color: #e6e6e6;
+             border-color: #adadad;
+         }
+
+         &:active {
+             color: #fff;
+             background-color: #2e6da4;
+             border-color: #fff;
+         }
+
+         &.disabled {
+             color: #999;
+             background-color: #fff;
+             border-color: #ccc;
+             cursor: not-allowed;
+         }
+     }
+
+     .paginate_button.current {
+         color: #fff;
+         background-color: #337ab7;
+         border-color: #2e6da4;
+         font-weight: bold;
+     }
+
+/* Search box style */
+.dataTables_filter {
+    margin-bottom: 10px !important;
+
+    label {
+        display: block;
+        margin-bottom: 6px;
+        font-weight: bold;
+    }
+
+    input {
+        padding: 6px;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+    }
+}
